@@ -1,0 +1,24 @@
+# 应用名称
+spring:
+  application:
+    name: order-food-system
+  # 数据库驱动：
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 数据源名称
+    name: defaultDataSource
+   # 数据库连接地址
+    url: jdbc:mysql://47.108.178.207:3306/order_food_system?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+# 应用服务 WEB 访问端口
+server:
+  port: 8081
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.dgut.orderfoodsystem.entity
+  #驼峰命名映射
+  configuration:
+    map-underscore-to-camel-case: true
+    #设置对象回填
+    use-generated-keys: true
