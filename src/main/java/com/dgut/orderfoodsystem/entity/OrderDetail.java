@@ -3,7 +3,6 @@ package com.dgut.orderfoodsystem.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -16,9 +15,9 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderDetail {
-    private Integer id;
-    private Integer orderId;
-    private Integer dishId;
+    private String id;
+    private String orderId;
+    private String dishId;
     private String name;
     private Integer num;
     private BigDecimal price;

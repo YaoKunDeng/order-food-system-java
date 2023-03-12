@@ -3,9 +3,7 @@ package com.dgut.orderfoodsystem.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.Date;
-
 /**
  * @Description TODO
  * @Author akun
@@ -15,8 +13,9 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Store {
-    private Integer id;
-    private String name;
+    private String id;
+    private String userId;
+    private String storeName;
     private String address;
     private Date createTime;
 }

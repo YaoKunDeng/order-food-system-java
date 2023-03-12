@@ -3,8 +3,6 @@ package com.dgut.orderfoodsystem.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
-
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -17,10 +15,10 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Dishes {
-    private Integer id;
-    private Integer storeId;
-    private Integer menuId;
-    private String name;
+    private String id;
+    private String storeId;
+    private String menuId;
+    private String dishName;
     private String description;
     private String image;
     private BigDecimal oldPrice;

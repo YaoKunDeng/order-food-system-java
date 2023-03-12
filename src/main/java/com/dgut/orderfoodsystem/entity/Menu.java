@@ -3,19 +3,21 @@ package com.dgut.orderfoodsystem.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
+
+import java.util.Date;
 
 /**
  * @Description TODO
  * @Author akun
- * @Data 2023-2-25
+ * @Data 2023-3-9
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class menu {
-    private Integer id;
-    private Integer storeId;
-    private String name;
+public class Menu {
+    private String id;
+    private String storeId;
+    private String menuName;
     private String description;
+    private Date createTime;
 }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgut.orderfoodsystem.mapper.StoreMapper">
+    <sql id="fields">
+        id,user_id, store_name, address, create_time
+    </sql>
+
+    <insert id="insertStore" parameterType="Store">
+        insert into store( <include refid="fields"></include>)
+        values (#{id},#{userId}, #{storeName}, #{address}, #{createTime})
+    </insert>
+
+    <select id="selectStoreByStoreName" parameterType="String" resultType="Store">
+        select * from store where store_name = #{storeName}
+    </select>
+
+    <select id="selectStoreByUserId" parameterType="String" resultType="Store">
+        select * from store where user_id = #{id}
+    </select>
+
+    <select id="selectStoreById" parameterType="String" resultType="Store">
+        select * from store where id = #{id}
+    </select>
+</mapper>

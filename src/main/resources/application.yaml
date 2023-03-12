@@ -11,6 +11,12 @@ spring:
     url: jdbc:mysql://47.108.178.207:3306/order_food_system?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
     username: root
     password: 123456
+  devtools:
+    livereload:
+      enabled: true
+      port: 35729
+    restart:
+      enabled: true
 # 应用服务 WEB 访问端口
 server:
   port: 8081
@@ -22,3 +28,13 @@ mybatis:
     map-underscore-to-camel-case: true
     #设置对象回填
     use-generated-keys: true
+
+wx:
+  appId: wxf02ae7c30fae2d79
+  appSecret: c4738b30b49f629bac615d23fb1c6be8
+
+#路径定义
+application:
+  path:
+    domain: http://localhost:8081
+    upload: e:\Code\JAVA\order-food-system\upload

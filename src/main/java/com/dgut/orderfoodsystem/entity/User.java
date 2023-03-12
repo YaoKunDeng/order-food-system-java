@@ -3,8 +3,6 @@ package com.dgut.orderfoodsystem.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
-
 import java.util.Date;
 
 /**
@@ -16,11 +14,13 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-    private Integer id;
+    private String id;
     private String username;
     private String password;
+    private String confirmPassword;
     private Date createTime;
     private Date updateTime;
     private Date loginTime;
     private String phone;
+    private String salt;
 }

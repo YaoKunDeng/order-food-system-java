@@ -3,15 +3,25 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dgut.orderfoodsystem.mapper.UserMapper">
+    <sql id="fields">
+        id, username, password, create_time,update_time, login_time, phone, salt
+    </sql>
+
     <insert id="insertUser" parameterType="User" keyProperty="id">
         insert into
-        user (username, password, create_time, update_time, login_time, phone)
-        values (#{username},#{password}, #{createTime}, #{updateTime}, #{loginTime}, #{phone})
+        user (<include refid="fields"></include>)
+        values (#{id}, #{username}, #{password}, #{createTime}, #{updateTime}, #{loginTime}, #{phone}, #{salt})
     </insert>
 
-    <select id="selectAllUser" resultType="User">
-        select * from user
+    <select id="selectUserByUsername" parameterType="String" resultType="User">
+        select * from user where username=#{username}
     </select>
+
+    <update id="updateLoginTime">
+        update user set login_time = #{date} where username=#{username}
+    </update>
+
+
 
 
 

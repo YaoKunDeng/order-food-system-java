@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgut.orderfoodsystem.mapper.DishesMapper">
+    <sql id="fields">
+        id,store_id, menu_id, dish_name, description, image, old_price, new_price, create_time
+    </sql>
+
+    <insert id="addDish" parameterType="Dishes">
+        insert into dishes (<include refid="fields"></include>)
+        values (#{id}, #{storeId}, #{menuId}, #{dishName}, #{description}, #{image}, #{oldPrice}, #{newPrice},#{createTime})
+    </insert>
+    
+    <delete id="delDish" parameterType="String">
+        delete from dishes where id = #{id}
+    </delete>
+
+    <update id="updateDish" parameterType="Dishes">
+        update dishes set dish_name = #{dishName}, description=#{description},
+        image=#{image}, old_price= #{oldPrice}, new_price=#{newPrice}, menu_id=#{menuId}
+        where id = #{id}
+    </update>
+    
+    <select id="selectDishesByStoreId" parameterType="String" resultType="Dishes">
+        select * from dishes where store_id = #{storeId};
+    </select>
+
+    <select id="selectDishById" parameterType="String" resultType="Dishes">
+        select * from dishes where id = #{id};
+    </select>
+
+</mapper>

@@ -3,8 +3,6 @@ package com.dgut.orderfoodsystem.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
-
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -17,9 +15,9 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Order {
-    private Integer id;
-    private Integer userId;
-    private Integer storeId;
+    private String id;
+    private String userId;
+    private String storeId;
     private Date orderTime;
     private BigDecimal amount;
     private Integer status;
