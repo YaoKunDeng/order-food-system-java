@@ -3,7 +3,6 @@ package com.dgut.orderfoodsystem.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.Date;
 
 /**
@@ -24,5 +23,5 @@ public class WxUser {
     private String country;
     private String language;
     private Date createTime;
-    private Date updatedTime;
+    private Date updateTime;
 }

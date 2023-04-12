@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgut.orderfoodsystem.mapper.ShoppingCartMapper">
+    <sql id="fields">
+        id,menu_id, dish_id, shopping_number, imgURL, dish_name, description, num, old_price, new_price, create_time
+    </sql>
+
+    <insert id="insertShoppingCart" parameterType="ShoppingCart">
+        insert into shopping_cart (<include refid="fields"></include>)
+        values (#{id}, #{menuId}, #{dishId}, #{shoppingNumber}, #{imgURL},
+            #{dishName}, #{description}, #{num}, #{oldPrice}, #{newPrice}, #{createTime}
+        )
+    </insert>
+
+    <select id="selectShoppingCartsByShoppingNumber" parameterType="String" resultType="ShoppingCart">
+        select * from shopping_cart where  shopping_number= #{ShoppingNumber}
+    </select>
+
+
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgut.orderfoodsystem.mapper.AddressMapper">
+    <sql id="fields">
+        id, user_id, addr, create_time, update_time, user_name, phone, house_num,latitude, longitude,address_name, sex
+    </sql>
+
+    <insert id="insertAddress" parameterType="Address">
+        insert into address(<include refid="fields"></include>)
+        values (#{id}, #{userId}, #{addr}, #{createTime}, #{updateTime}, #{userName}, #{phone}, #{houseNum},#{latitude},#{longitude},#{addressName}, #{sex})
+    </insert>
+
+    <select id="getAddressByUserId" parameterType="String" resultType="Address">
+        select * from address where user_id = #{userId}
+    </select>
+
+    <update id="updateAddress" parameterType="Address">
+        update address set addr=#{addr}, update_time=#{updateTime}, user_name= #{userName}, phone=#{phone},
+        house_num=#{houseNum},latitude=#{latitude},longitude=#{longitude},address_name=#{addressName},  sex=#{sex} where id=#{id}
+    </update>
+
+    <delete id="deleteAddressById" parameterType="String">
+        delete address where id = #{addressId}
+    </delete>
+
+
+
+
+
+
+</mapper>

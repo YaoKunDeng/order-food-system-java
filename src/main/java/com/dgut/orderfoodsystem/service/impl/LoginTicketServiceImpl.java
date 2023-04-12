@@ -3,10 +3,8 @@ package com.dgut.orderfoodsystem.service.impl;
 import com.dgut.orderfoodsystem.entity.LoginTicket;
 import com.dgut.orderfoodsystem.mapper.LoginTicketMapper;
 import com.dgut.orderfoodsystem.service.LoginTicketService;
-import com.dgut.orderfoodsystem.utils.ApiResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.UUID;

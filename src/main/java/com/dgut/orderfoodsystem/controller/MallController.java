@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.annotation.Resource;
 import java.io.File;
 import java.io.IOException;
@@ -130,7 +129,7 @@ public class MallController {
         //生成随机文件名
         fileName = UUID.randomUUID().toString().replaceAll("-","")+suffix;
         //确定文件存储路径
-        String filePath = uploadPath + "/" + fileName;
+        String filePath = uploadPath + "\\" + fileName;
         File dest = new File(filePath);
         try {
             file.transferTo(dest);
@@ -229,4 +228,5 @@ public class MallController {
         ApiResponse response = dishesService.delDish(id);
         return response;
     }
+
 }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgut.orderfoodsystem.mapper.OrderDetailMapper">
+    <sql id="fields">
+        id,order_id, dish_id, dish_name, description, num, imgURL, old_price,new_price , create_time, update_time
+    </sql>
+
+    <insert id="addOrderDetail" parameterType="OrderDetail">
+        insert into order_detail (<include refid="fields"></include>)
+        values (#{id}, #{orderId}, #{dishId}, #{dishName}, #{description}, #{num},#{imgURL}, #{oldPrice}, #{newPrice},
+             #{createTime}, #{updateTime}
+        )
+    </insert>
+
+    <select id="selectOrderDetailByOrderId" parameterType="String" resultType="OrderDetail">
+        select * from order_detail where order_id=#{orderId}
+    </select>
+
+
+
+</mapper>

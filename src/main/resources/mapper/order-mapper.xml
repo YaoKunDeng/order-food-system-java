@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgut.orderfoodsystem.mapper.OrderMapper">
+    <sql id="fields">
+        id,user_id, store_id, order_time, amount, status, address, delivery_time,create_time , update_time, note,delivery_way
+    </sql>
+
+    <insert id="insertOrder" parameterType="Orders">
+        insert into orders(<include refid="fields"></include>)
+        values (#{id}, #{userId}, #{storeId}, #{orderTime}, #{amount}, #{status}, #{address}, #{deliveryTime},
+        #{createTime}, #{updateTime}, #{note},#{deliveryWay}
+        )
+    </insert>
+
+    <select id="selectOrdersByUserId" parameterType="String" resultType="Orders">
+        select * from orders where user_id=#{userId}
+    </select>
+
+
+
+</mapper>
