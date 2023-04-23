@@ -17,6 +17,13 @@
         select * from wx_user where open_id = #{openId}
     </select>
 
+    <select id="selectAllWxUser" resultType="WxUser">
+        select * from wx_user
+    </select>
+
+    <select id="delWxUser" parameterType="String">
+        delete from wx_user where open_id = #{openId}
+    </select>
 
 
 </mapper>

@@ -18,7 +18,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-
 /**
  * @Description TODO
  * @Author akun
@@ -80,5 +79,18 @@ public class WxLoginController {
         mapApiResponse.setMessage("登录成功!");
         mapApiResponse.setData(resultMap);
         return mapApiResponse;
+    }
+
+    @RequestMapping(path = "users",method = RequestMethod.GET)
+    public ApiResponse getWxUsers(){
+        ApiResponse wxUsers = wxUserService.getWxUsers();
+        return wxUsers;
+    }
+
+    @RequestMapping(path = "delUser", method = RequestMethod.GET)
+    public ApiResponse delWxUser(String openId){
+        System.out.println(openId);
+        ApiResponse response = wxUserService.delWxUser(openId);
+        return response;
     }
 }
