@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 /**
@@ -27,8 +29,11 @@ import java.util.*;
 @RequestMapping("/mall")
 public class MallController {
 
-    @Value("${application.path.upload}")
-    private String uploadPath;
+    @Value("${application.path.webUpload}")
+    private String webUploadPath;
+
+    @Value("${application.path.wxUpload}")
+    private String wxUploadPath;
     @Resource
     private MenuService menuService;
 
@@ -111,7 +116,8 @@ public class MallController {
 
     @RequestMapping(path = "/upload",method = RequestMethod.POST)
     public ApiResponse uploadImage(MultipartFile file){
-        System.out.println(file);
+
+
         //MultipartFile是SpringMVC提供简化上传操作的工具类
         ApiResponse<String> mapApiResponse = new ApiResponse<>();
         if(file==null){
@@ -129,18 +135,50 @@ public class MallController {
         //生成随机文件名
         fileName = UUID.randomUUID().toString().replaceAll("-","")+suffix;
         //确定文件存储路径
-        String filePath = uploadPath + "\\" + fileName;
-        File dest = new File(filePath);
-        try {
-            file.transferTo(dest);
-        } catch (IOException e) {
+        String webFilePath = webUploadPath + "\\" + fileName;
+        String wxFilePath =  wxUploadPath + "\\" + fileName;
+
+        //创建输入流和输出流
+        try (InputStream inputStream = file.getInputStream()) {
+            FileOutputStream webFileOutputStream = new FileOutputStream(webFilePath);
+            FileOutputStream wxFileOutputStream = new FileOutputStream(wxFilePath);
+            // 读取文件并写入两个不同的文件中
+            int bytesRead;
+            byte[] buffer = new byte[1024];
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                webFileOutputStream.write(buffer, 0, bytesRead);
+                wxFileOutputStream.write(buffer, 0, bytesRead);
+            }
+
+            // 关闭输入流和输出流
+            inputStream.close();
+            webFileOutputStream.close();
+            wxFileOutputStream.close();
+        }catch (Exception e){
+            e.printStackTrace();
             mapApiResponse.setMessage("上传文件失败");
             mapApiResponse.setCode(500);
             return mapApiResponse;
         }
+
+//        File webDest = new File(webFilePath);
+//        File wxDest = new File(wxFilePath);
+//        System.out.println(webDest);
+//        System.out.println(wxDest);
+//        try {
+//            file.transferTo(wxDest);
+//            file.transferTo(webDest);
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            mapApiResponse.setMessage("上传文件失败");
+//            mapApiResponse.setCode(500);
+//            return mapApiResponse;
+//        }
+
         mapApiResponse.setCode(200);
         mapApiResponse.setMessage("文件上传成功!");
-        mapApiResponse.setData(filePath);
+        mapApiResponse.setData(fileName);
         return mapApiResponse;
     }
 

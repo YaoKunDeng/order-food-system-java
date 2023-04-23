@@ -37,5 +37,6 @@ wx:
 application:
   path:
     domain: http://localhost:8081
-    upload: e:\Code\JAVA\order-food-system\upload
+    webUpload: e:\Code\vueProject\food-order-system\src\upload
+    wxUpload: e:\Code\miniProgram\orderFoodSystem\image\upload
 
