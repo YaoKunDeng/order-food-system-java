@@ -1,5 +1,4 @@
 package com.dgut.orderfoodsystem.entity;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,5 +16,7 @@ public class Store {
     private String userId;
     private String storeName;
     private String address;
+    private String latitude;
+    private String longitude;
     private Date createTime;
 }

@@ -23,4 +23,9 @@
     <select id="selectStoreById" parameterType="String" resultType="Store">
         select * from store where id = #{id}
     </select>
+
+    <update id="updateStore" parameterType="Store">
+        update store set store_name = #{storeName}, address=#{address},latitude=#{latitude},longitude=#{longitude} where id = #{id}
+    </update>
+
 </mapper>

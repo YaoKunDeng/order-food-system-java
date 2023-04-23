@@ -1,5 +1,4 @@
 package com.dgut.orderfoodsystem.mapper;
-
 import com.dgut.orderfoodsystem.entity.Store;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -19,4 +18,6 @@ public interface StoreMapper {
     Store selectStoreByUserId(String id);
 
     Store selectStoreById(String id);
+
+    void updateStore(Store store);
 }

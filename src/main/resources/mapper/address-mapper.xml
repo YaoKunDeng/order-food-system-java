@@ -22,7 +22,7 @@
     </update>
 
     <delete id="deleteAddressById" parameterType="String">
-        delete address where id = #{addressId}
+        delete from address where id = #{addressId}
     </delete>
 
 

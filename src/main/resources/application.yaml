@@ -38,3 +38,4 @@ application:
   path:
     domain: http://localhost:8081
     upload: e:\Code\JAVA\order-food-system\upload
+

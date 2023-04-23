@@ -22,4 +22,6 @@ public interface UserMapper {
     User selectUserByUsername(String username);
 
     void updateLoginTime(@Param("date") Date date, @Param("username") String username);
+
+    void updateUser(User user);
 }

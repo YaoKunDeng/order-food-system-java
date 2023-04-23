@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.Date;
-
 /**
  * @Description TODO
  * @Author akun
@@ -22,5 +21,6 @@ public class User {
     private Date updateTime;
     private Date loginTime;
     private String phone;
+    private String address;
     private String salt;
 }

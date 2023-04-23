@@ -21,6 +21,11 @@
         update user set login_time = #{date} where username=#{username}
     </update>
 
+    <update id="updateUser" parameterType="User">
+        update user set username=#{username}, password=#{password}, phone=#{phone}, address=#{address}
+        where id=#{id}
+    </update>
+
 
 
 

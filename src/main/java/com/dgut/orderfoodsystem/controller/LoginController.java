@@ -10,7 +10,6 @@ import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-
 /**
  * @Description TODO
  * @Author akun
@@ -49,4 +48,12 @@ public class LoginController {
         response.setData(map);
         return response;
     }
+
+    @RequestMapping(path = "/update/user",method = RequestMethod.POST)
+    public ApiResponse updateUser(User user){
+        System.out.println(user);
+        ApiResponse response = userService.updateUser(user);
+        return response;
+    }
+
 }

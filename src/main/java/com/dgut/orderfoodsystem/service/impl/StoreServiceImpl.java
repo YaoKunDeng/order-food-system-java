@@ -7,7 +7,6 @@ import com.dgut.orderfoodsystem.utils.ApiResponse;
 import com.dgut.orderfoodsystem.utils.CommonUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.util.Date;
 
@@ -125,5 +124,44 @@ public class StoreServiceImpl implements StoreService {
             storeApiResponse.setMessage("查询店铺信息错误！");
             return storeApiResponse;
         }
+    }
+
+    @Override
+    public ApiResponse updateStore(Store store) {
+        ApiResponse<Store> storeApiResponse = new ApiResponse<>();
+        if(store==null){
+            storeApiResponse.setMessage("store为空！");
+            storeApiResponse.setCode(400);
+            return storeApiResponse;
+        }
+        if(StringUtils.isBlank(store.getId())){
+            storeApiResponse.setMessage("storeId为空！");
+            storeApiResponse.setCode(400);
+            storeApiResponse.setData(store);
+        }
+        if(StringUtils.isBlank(store.getStoreName())){
+            storeApiResponse.setMessage("StoreName为空！");
+            storeApiResponse.setCode(400);
+            storeApiResponse.setData(store);
+        }
+        if(StringUtils.isBlank(store.getAddress())){
+            storeApiResponse.setMessage("StoreAddress为空！");
+            storeApiResponse.setCode(400);
+            storeApiResponse.setData(store);
+        }
+        try {
+            storeMapper.updateStore(store);
+            storeApiResponse.setCode(200);
+            storeApiResponse.setData(store);
+            storeApiResponse.setMessage("更新成功！");
+            return storeApiResponse;
+        }catch (Exception e){
+            e.printStackTrace();
+            storeApiResponse.setCode(500);
+            storeApiResponse.setData(store);
+            storeApiResponse.setMessage("更新失败！");
+            return storeApiResponse;
+        }
+
     }
 }

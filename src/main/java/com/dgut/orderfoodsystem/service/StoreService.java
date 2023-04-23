@@ -2,7 +2,6 @@ package com.dgut.orderfoodsystem.service;
 
 import com.dgut.orderfoodsystem.entity.Store;
 import com.dgut.orderfoodsystem.utils.ApiResponse;
-
 /**
  * @Description TODO
  * @Author akun
@@ -16,4 +15,6 @@ public interface StoreService {
     ApiResponse getStoreByUserId(String id);
 
     ApiResponse getStoreById(String id);
+
+    ApiResponse updateStore(Store store);
 }

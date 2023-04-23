@@ -1,4 +1,5 @@
 package com.dgut.orderfoodsystem.service.impl;
+
 import com.dgut.orderfoodsystem.entity.User;
 import com.dgut.orderfoodsystem.mapper.UserMapper;
 import com.dgut.orderfoodsystem.service.UserService;
@@ -76,5 +77,54 @@ public class UserServiceImpl implements UserService {
         response.setCode(200);
         response.setMessage("登录成功");
         return response;
+    }
+
+    @Override
+    public ApiResponse updateUser(User user) {
+        ApiResponse<User> response = new ApiResponse<>();
+        if(user==null){
+            response.setMessage("user为空！");
+            response.setCode(400);
+            return response;
+        }
+        if(StringUtils.isBlank(user.getId())){
+            response.setData(user);
+            response.setMessage("userId为空！");
+            response.setCode(400);
+            return response;
+        }
+        if(StringUtils.isBlank(user.getPassword())){
+            response.setData(user);
+            response.setMessage("password为空！");
+            response.setCode(400);
+            return response;
+        }
+        if(StringUtils.isBlank(user.getUsername())){
+            response.setData(user);
+            response.setMessage("username为空！");
+            response.setCode(400);
+            return response;
+        }
+        if(StringUtils.isBlank(user.getPhone())){
+            response.setData(user);
+            response.setMessage("phone为空！");
+            response.setCode(400);
+            return response;
+        }
+        try {
+            user.setPassword(Md5Thicken.MD5(user.getPassword()+user.getSalt()));
+            userMapper.updateUser(user);
+            response.setData(user);
+            response.setMessage("更新user成功");
+            response.setCode(200);
+            return response;
+        }catch (Exception e){
+            e.printStackTrace();
+            response.setData(user);
+            response.setMessage("更新user失败");
+            response.setCode(500);
+            return response;
+        }
+
     }
 }

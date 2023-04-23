@@ -1,5 +1,4 @@
 package com.dgut.orderfoodsystem.service;
-
 import com.dgut.orderfoodsystem.entity.User;
 import com.dgut.orderfoodsystem.utils.ApiResponse;
 
@@ -12,6 +11,8 @@ public interface UserService {
     ApiResponse register(User user);
 
     ApiResponse login(String username, String password);
+
+    ApiResponse updateUser(User user);
 
 
 }
