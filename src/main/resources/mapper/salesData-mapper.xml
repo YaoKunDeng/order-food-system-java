@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgut.orderfoodsystem.mapper.SalesDataMapper">
+
+    <select id="selectSalesTable" resultType="SalesTable">
+        select order_detail.dish_name,
+        SUM(CASE WHEN DATE(order_detail.create_time) = CURRENT_DATE() THEN order_detail.num *order_detail.new_price ELSE 0 END) as todaySales,
+        SUM(CASE WHEN MONTH (DATE(order_detail.create_time)) = MONTH(CURRENT_DATE()) THEN order_detail.num *order_detail.new_price ELSE 0 END) as monthSales,
+        SUM(order_detail.num *order_detail.new_price) as totalSales
+--         from dishes INNER JOIN order_detail ON dishes.id = order_detail.dish_id
+--         group by dishes.dish_name
+        FROM order_detail
+        GROUP BY order_detail.dish_name
+    </select>
+
+    <select id="selectSalesTotalDate" resultType="SalesTotal">
+        select  SUM(CASE WHEN DATE(order_detail.create_time) = CURRENT_DATE() THEN order_detail.num *order_detail.new_price ELSE 0 END) as todaySales,
+        SUM(CASE WHEN MONTH (DATE(order_detail.create_time)) = MONTH(CURRENT_DATE()) THEN order_detail.num *order_detail.new_price ELSE 0 END) as monthSales,
+        SUM(order_detail.num *order_detail.new_price) as totalSales
+        FROM order_detail
+    </select>
+
+    <select id="selectLineChartData" resultType="LineChartData">
+        select DATE(create_time) as date,
+        SUM(num * new_price) as turnover from order_detail
+        GROUP BY create_time
+    </select>
+
+    <select id="selectBarGraph" resultType="BarGraph">
+        select dish_name as dishName,
+        SUM(num) as number from order_detail
+        GROUP BY dish_name
+    </select>
+
+</mapper>
